@@ -100,6 +100,12 @@
       @apply grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
     }
   }
+  .fetch-button {
+    @apply mt-5 px-4 py-2 bg-light-100 text-dark-100 font-bold rounded-lg hover:bg-light-200 transition-colors;
+  }
+  .search_div {
+    @apply relative flex items-center justify-center w-full max-w-3xl mx-auto mt-10;
+  }
 
   .movie-card {
     @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;

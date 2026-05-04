@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Search from './components/Search'
 import Spinner from './components/Spinner'
+import MovieCart from './components/MovieCart'
 import './App.css'
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
       setIsLoading(false);
     }
   };
+  useEffect(()=>{
+    fetchMovies();
+  },[searchTerm]);
   return (
     <main>
       <header>
@@ -46,28 +50,22 @@ const App = () => {
       </header>
       <div className='search_div'>
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <button onClick={fetchMovies} className='fetch-button'>Fetch Movies</button>
       </div>
 
       <section className="all-movies">
-        <h2 className="mt-[40px]">All Movies</h2>
+        <h2 className="mt-[40px] text-center">All Movies</h2>        
         {isLoading ? (
           <Spinner />
-        ):errorMessage ? (
+        ) : errorMessage ? (
           <p className="text-red-500">{errorMessage}</p>
-        ):(
+        ) : (
           <ul>
-            {movieList.map((movie)=>(
-              <p className='text-white'>{movie.Title}</p>
+            {movieList.map((movie) => (
+              <MovieCart key={movie.imdbID} movie={movie} />
             ))}
           </ul>
         )
-      }
-        <ul>
-          {searchResults.map(movie => (
-            <li key={movie.imdbID}>{movie.Title} ({movie.Year})</li>
-          ))}
-        </ul>
+        }
       </section>
     </main>
   )
